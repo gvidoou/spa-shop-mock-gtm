@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mock gtm events</title>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://xfvwulfg.usv.stape.io/c9axfvwulfg.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','7=aWQ9R1RNLUtCVjRWQkpK&sort=desc');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body>
+    <h1>GTM mock!</h1>
+    <div class="container text-center">
+        <div class="row p-3">
+          <div class="col">
+            <a type="button" class="btn btn-warning" href="#" onclick="pushEvent('page_view')">Page View</a>
+          </div>
+          <div class="col">
+            <a type="button" class="btn btn-warning" href="#" onclick="pushEvent('view_item')">View item</a>
+          </div>
+          <div class="col">
+
+            <a type="button" class="btn btn-warning" href="#" onclick="pushEvent('view_item_list')">View item list</a>
+          </div>
+        </div>
+        <div class="row p-3">
+          <div class="col">
+            <a type="button" class="btn btn-warning" href="#" onclick="pushEvent('view_cart')">View cart</a>
+          </div>
+          <div class="col">
+            <a type="button" class="btn btn-warning" href="#" onclick="pushEvent('begin_checkout')">Begin checkout</a>
+          </div>
+          <div class="col">
+            <a type="button" class="btn btn-warning" href="#" onclick="pushEvent('purchase')">Purchase</a>
+            
+          </div>
+
+        </div>
+        <div class="row-fluid pt-5">
+          <div class="col">
+            <div class="card">
+              <div class="card-body" id="text_field"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      let text_field = document.getElementById('text_field');
+      function log(text, data) {
+
+        console.log(text + ' datalayer event count:' + dataLayer.length);
+        text_field.innerHTML = text + '<br> datalayer event count:' + dataLayer.length + '<br>' + JSON.stringify(dataLayer[dataLayer.length -1]);
+        
+      }
+
+      function pushEvent(event_name) {
+        if (event_name === 'page_view') {
+          dataLayer.push({
+            'event': 'Pageview',
+            'pagePath': window.location.url,
+            'pageTitle': 'Pancake Event Signup',
+            'visitorType': 'customer'
+          });          
+        } else if (event_name === 'view_item') {
+          dataLayer.push({
+            event: "view_item_stape",
+            user_data: {
+              first_name: null,
+              last_name: null,
+              email: null,
+              phone: null,
+              city: null,
+              country: null,
+              zip: null,
+              region: null,
+              street: null,
+              customer_id: null
+            },
+            ecommerce: {
+              value: "69.9",
+              currency: "EUR",
+              items: [
+                {
+                  item_id: "999993333",
+                  item_sku: "red_potion_3_50ml_Eng",
+                  item_variant: "8888884444",
+                  item_name: "MossElixir™ Face Cream",
+                  variant_name: "Default Title",
+                  item_category: "",
+                  price: 69.9,
+                  item_brand: "Red potion™ Face Cream",
+                  imageURL: "image.png",
+                  item_url: "/products/potion-3",
+                  quantity: "1"
+                }
+              ]
+            },
+            actual_url: window.location.url + 'red_potion',
+            ecomm_pagetype: "product",
+          });
+        } else if (event_name === 'add_to_cart') {
+          dataLayer.push({
+            event: "add_to_cart",
+            user_data: {
+              first_name: null,
+              last_name: null,
+              email: null,
+              phone: null,
+              city: null,
+              country: null,
+              zip: null,
+              region: null,
+              street: null,
+              customer_id: null
+            },
+            ecommerce: {
+              value: "69.9",
+              currency: "USD",
+              items: [
+                {
+                  item_id: "999993333",
+                  item_sku: "red_potion_3_50ml_Eng",
+                  item_variant: "8888884444",
+                  item_name: "Red potion™ Face Cream",
+                  variant_name: null,
+                  item_category: "",
+                  item_brand: "Red potion",
+                  item_url: "/products/potion-3",
+                  price: 69.9,
+                  imageURL: "",
+                  quantity: 1
+                }
+              ]
+            },
+            actual_url:  window.location.url,
+            ecomm_pagetype: "product",
+          });
+          
+        } else if (event_name === 'begin_checkout') {
+          dataLayer.push({
+            event: "begin_checkout",
+            user_data: {
+              first_name: 'Testname',
+              last_name: 'Test_lastname',
+              email: 'test@mail.com',
+              phone: '+1234567890',
+              city: 'Vicecity',
+              country: 'USA',
+              zip: '12345',
+              region: 'NJ',
+              street: 'Wallstreet',
+              customer_id: '19999'
+            },
+            ecommerce: {
+              value: "69.9",
+              currency: "USD",
+              cart_total: "69.9",
+              cart_quantity: 1,
+              items: [
+                {
+                  item_id: "999993333",
+                  item_sku: "red_potion_3_50ml_Eng",
+                  item_variant: "8888884444",
+                  item_name: "Red potion™ Face Cream",
+                  variant_name: null,
+                  item_category: "",
+                  item_brand: "Red potion",
+                  item_url: "/products/potion-3",
+                  price: 69.9,
+                  imageURL: "",
+                  quantity: 1
+                }
+              ]
+            },
+            actual_url:  window.location.url + 'checkout',
+            ecomm_pagetype: "basket",
+          });
+
+        } else if (event_name === 'view_item_list') {
+          dataLayer.push({
+            event: "view_collection_stape",
+            user_data: {
+              first_name: null,
+              last_name: null,
+              email: null,
+              phone: null,
+              city: null,
+              country: null,
+              zip: null,
+              region: null,
+              street: null,
+              customer_id: null
+            },
+            ecommerce: {
+              collection_id: "639084069193",
+              item_list_name: "Alle Produkte",
+              currency: "USD",
+              items: [
+                {
+                  item_id: "999993333",
+                  item_sku: "red_potion_3_50ml_Eng",
+                  item_variant: "8888884444",
+                  item_name: "Red potion™ Face Cream",
+                  variant_name: "Default Title",
+                  item_category: "",
+                  item_brand: "Red potion",
+                  price: 69.9,
+                  imageURL: "img.png",
+                  item_url: "/products/potion-3",
+                  index: 1
+                },
+                {
+                  item_id: "8768519864649",
+                  item_sku: "1-SE_006-02-EN-01",
+                  item_variant: "49109718794569",
+                  item_name: "Green Potion™ Night Repair Serum",
+                  variant_name: "Default Title",
+                  item_category: "",
+                  item_brand: "Red potion",
+                  price: 79.9,
+                  imageURL: "",
+                  item_url: "/products/green-potion-3",
+                  index: 2
+                },
+              ]
+            },
+            actual_url: window.location.url + 'list',
+            ecomm_pagetype: "category",
+          });
+        } else if (event_name === 'view_cart') {
+          dataLayer.push({
+            event: "view_cart",
+            user_data: {
+              first_name: null,
+              last_name: null,
+              email: null,
+              phone: null,
+              city: null,
+              country: null,
+              zip: null,
+              region: null,
+              street: null,
+              customer_id: null
+            },
+            ecommerce: {
+              collection_id: "639084069193",
+              item_list_name: "Alle Produkte",
+              currency: "USD",
+              items: [
+                {
+                  item_id: "999993333",
+                  item_sku: "red_potion_3_50ml_Eng",
+                  item_variant: "8888884444",
+                  item_name: "Red potion™ Face Cream",
+                  variant_name: "Default Title",
+                  item_category: "",
+                  item_brand: "Red potion",
+                  price: 69.9,
+                  imageURL: "img.png",
+                  item_url: "/products/potion-3",
+                  index: 1
+                },
+              ]
+            },
+            actual_url: window.location.url + 'list',
+            ecomm_pagetype: "category",
+          });
+        } else if (event_name === 'purchase') {
+          dataLayer.push({
+            event: "purchase",
+            user_data: {
+              first_name: 'Testname',
+              last_name: 'Test_lastname',
+              email: 'test@mail.com',
+              phone: '+1234567890',
+              city: 'Vicecity',
+              country: 'USA',
+              zip: '12345',
+              region: 'NJ',
+              street: 'Wallstreet',
+              customer_id: '19999'
+            },
+            ecommerce: {
+              currency: "USD",
+              items: [
+                {
+                  item_id: "999993333",
+                  item_sku: "red_potion_3_50ml_Eng",
+                  item_variant: "8888884444",
+                  item_name: "Red potion™ Face Cream",
+                  variant_name: "Default Title",
+                  item_category: "",
+                  item_brand: "Red potion",
+                  price: 69.9,
+                  imageURL: "img.png",
+                  item_url: "/products/potion-3",
+                  index: 1
+                },
+              ],
+              transaction_id: "b3488dkfk93k20e",
+              value: 69.9
+            },
+          });
+        }
+        log(event_name + ' event sent');
+      }
+
+    </script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
